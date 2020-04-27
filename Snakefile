@@ -10,8 +10,8 @@ import pathlib
 
 rule nexus_targets:
     input:
-        'output/aln/olfactory_rename.fa.nxs',
-        'output/aln/olfactory_gappyout.fa.nxs'
+        'data/olfactory_rename.fa.nxs',
+        'data/olfactory_gappyout.fa.nxs'
 
 #########
 # MAIN ##
