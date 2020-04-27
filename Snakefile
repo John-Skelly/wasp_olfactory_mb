@@ -8,7 +8,7 @@ import pathlib
 #RULES###
 #########
 
-rule nexus:
+rule nexus_targets:
     input:
         'output/aln/olfactory_rename.fa.nxs',
         'output/aln/olfactory_gappyout.fa.nxs'
@@ -18,7 +18,7 @@ rule nexus:
 #########
 
 #trimal no trim nexus output
-rule trim_no:
+rule nexus:
     input:
         'data/olfactory.fa.aln'
     output:
@@ -30,7 +30,7 @@ rule trim_no:
         '-out {output} '
 
 #trimal no trim nexus output
-rule trim_no:
+rule nexus_trim:
     input:
         'data/olfactory.fa.aln'
     output:
