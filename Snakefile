@@ -3,7 +3,6 @@
 import os
 import re
 import pathlib
-from Bio import SeqIO
 
 #########
 #RULES###
