@@ -10,6 +10,7 @@ import pathlib
 
 rule nexus_targets:
     input:
+        'data/olfactory.disambiguous.fa',
         'output/nxs/olfactory.disambiguous.rename.nxs',
         'output/nxs/olfactory.disambiguous.gappyout.nxs'
 
