@@ -31,10 +31,20 @@ rule disambiguate:
 
 #Align sequences
 
+rule muscle:
+    input:
+        'data/olfactory.disambiguous.fa'
+    output:
+        'data/olfactory.disambiguous.aln'
+    shell:
+        'muscle '
+        '-in {input} '
+        '-out {output} '
+
 #trimal no trim nexus output
 rule nexus:
     input:
-        'data/olfactory.disambiguous.fa'
+        'data/olfactory.disambiguous.aln'
     output:
         'output/nxs/olfactory.disambiguous.rename.nxs'
     shell:
@@ -46,7 +56,7 @@ rule nexus:
 #trimal no trim nexus output
 rule nexus_trim:
     input:
-        'data/olfactory.disambiguous.fa'
+        'data/olfactory.disambiguous.aln'
     output:
         'output/nxs/olfactory.disambiguous.gappyout.nxs'
     shell:
