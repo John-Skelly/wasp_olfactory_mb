@@ -19,7 +19,7 @@ rule nexus_targets:
 #########
 
 #Change ambiguous amino acids to X
-rule disambiguate
+rule disambiguate:
     input:
         'data/olfactory.fa'
     output:
