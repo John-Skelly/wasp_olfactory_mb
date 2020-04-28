@@ -10,50 +10,62 @@ import pathlib
 
 rule nexus_targets:
     input:
-        'output/nxs/olfactory_rename.fa.nxs',
-        'output/nxs/olfactory_gappyout.fa.nxs'
+        'output/nxs/olfactory.disambiguous.rename.nxs',
+        'output/nxs/olfactory.disambiguous.gappyout.nxs'
 
 #########
 # MAIN ##
 #########
 
+#Change ambiguous amino acids to X
+    input:
+        'data/olfactory.fa'
+    output:
+        'data/olfactory.disambiguous.fa'
+    shell:
+        "sed '/^[^>]/s/[BJOUZ]/X/g' "
+        "{input} "
+        "> {output}"
+
+#Align sequences
+
 #trimal no trim nexus output
 rule nexus:
     input:
-        'data/olfactory.fa.aln'
+        'data/olfactory.disambiguous.fa'
     output:
-        'output/nxs/olfactory_rename.fa.nxs'
+        'output/nxs/olfactory.disambiguous.rename.nxs'
     shell:
         'trimal '
         '-nexus '
         '-in {input} '
-        '-out {output} '
+        '-out {output}'
 
 #trimal no trim nexus output
 rule nexus_trim:
     input:
-        'data/olfactory.fa.aln'
+        'data/olfactory.disambiguous.fa'
     output:
-        'output/nxs/olfactory_gappyout.fa.nxs'
+        'output/nxs/olfactory.disambiguous.gappyout.nxs'
     shell:
         'trimal '
         '-nexus '
         '-gappyout '
         '-in {input} '
-        '-out {output} '
+        '-out {output}'
 
 #mb tree
 
 rule mb_tree:
     input:
-        'output/nxs/olfactory_rename.fa.nxs'
+        'output/nxs/olfactory.disambiguous.rename.nxs'
     output:
-        'output/tre/olfactory_rename.fa.tre'
+        'output/nxs/olfactory.disambiguous.rename.tre'
 
 #mb tree trimmed
 
 rule mb_tree_trimmed:
     input:
-        'output/nxs/olfactory_gappyout.fa.nxs'
+        'output/nxs/olfactory.disambiguous.trim.nxs'
     output:
-        'output/tre/olfactory_gappyout.fa.tre'
+        'output/nxs/olfactory.disambiguous.trim.tre'
